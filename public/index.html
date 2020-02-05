@@ -1,519 +1,137 @@
-<!doctype html>
-<!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-<title>Using turn.js and the new zoom feature</title>
-<meta name="viewport" content="width = 1050, user-scalable = no" />
-<script type="text/javascript" src="extras/jquery.min.1.7.js"></script>
-<script type="text/javascript" src="extras/modernizr.2.5.3.min.js"></script>
-<script type="text/javascript" src="lib/hash.js"></script>
-
-</head>
-<body>
-
-<div id="canvas">
-
-<div class="zoom-icon zoom-icon-in"></div>
-
-<div class="magazine-viewport">
-	<div class="container">
-		<div class="magazine">
-			<!-- Next button -->
-			<div ignore="1" class="next-button"></div>
-			<!-- Previous button -->
-			<div ignore="1" class="previous-button"></div>
-		</div>
-	</div>
-</div>
-
-<!-- Thumbnails -->
-<div class="thumbnails">
-	<div>
-		<ul>
-			<li class="i">
-				<img src="pages/varpunen-14-01.jpg" width="76" height="100" class="page-1">
-				<span>1</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-02.jpg" width="76" height="100" class="page-2">
-				<img src="pages/varpunen-14-03.jpg" width="76" height="100" class="page-3">
-				<span>2-3</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-04.jpg" width="76" height="100" class="page-4">
-				<img src="pages/varpunen-14-05.jpg" width="76" height="100" class="page-5">
-				<span>4-5</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-06.jpg" width="76" height="100" class="page-6">
-				<img src="pages/varpunen-14-07.jpg" width="76" height="100" class="page-7">
-				<span>6-7</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-08.jpg" width="76" height="100" class="page-8">
-				<img src="pages/varpunen-14-09.jpg" width="76" height="100" class="page-9">
-				<span>8-9</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-10.jpg" width="76" height="100" class="page-10">
-				<img src="pages/varpunen-14-11.jpg" width="76" height="100" class="page-11">
-				<span>10-11</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-12.jpg" width="76" height="100" class="page-12">
-				<img src="pages/varpunen-14-13.jpg" width="76" height="100" class="page-13">
-				<span>12-13</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-14.jpg" width="76" height="100" class="page-14">
-				<img src="pages/varpunen-14-15.jpg" width="76" height="100" class="page-15">
-				<span>14-15</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-16.jpg" width="76" height="100" class="page-16">
-				<img src="pages/varpunen-14-17.jpg" width="76" height="100" class="page-17">
-				<span>16-17</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-18.jpg" width="76" height="100" class="page-18">
-				<img src="pages/varpunen-14-19.jpg" width="76" height="100" class="page-19">
-				<span>18-19</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-20.jpg" width="76" height="100" class="page-20">
-				<img src="pages/varpunen-14-21.jpg" width="76" height="100" class="page-21">
-				<span>20-21</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-22.jpg" width="76" height="100" class="page-22">
-				<img src="pages/varpunen-14-23.jpg" width="76" height="100" class="page-23">
-				<span>22-23</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-24.jpg" width="76" height="100" class="page-24">
-				<img src="pages/varpunen-14-25.jpg" width="76" height="100" class="page-25">
-				<span>24-25</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-26.jpg" width="76" height="100" class="page-26">
-				<img src="pages/varpunen-14-27.jpg" width="76" height="100" class="page-27">
-				<span>26-27</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-28.jpg" width="76" height="100" class="page-28">
-				<img src="pages/varpunen-14-29.jpg" width="76" height="100" class="page-29">
-				<span>28-29</span>
-			</li>
-			<li class="d">
-				<img src="pages/varpunen-14-30.jpg" width="76" height="100" class="page-30">
-				<img src="pages/varpunen-14-31.jpg" width="76" height="100" class="page-31">
-				<span>30-31</span>
-			</li>
-			<li class="i">
-				<img src="pages/varpunen-14-32.jpg" width="76" height="100" class="page-32">
-				<span>32</span>
-			</li>
-		<ul>
-	<div>	
-</div>
-</div>
-
-<script type="text/javascript">
-
-function loadApp() {
-
- 	$('#canvas').fadeIn(1000);
-
- 	var flipbook = $('.magazine');
-
- 	// Check if the CSS was already loaded
-	
-	if (flipbook.width()==0 || flipbook.height()==0) {
-		setTimeout(loadApp, 10);
-		return;
-	}
-	
-	// Create the flipbook
-
-	flipbook.turn({
-			
-			// Magazine width
-
-			width: 922,
-
-			// Magazine height
-
-			height: 600,
-
-			// Duration in millisecond
-
-			duration: 1000,
-
-			// Hardware acceleration
-
-			acceleration: !isChrome(),
-
-			// Enables gradients
-
-			gradients: true,
-			
-			// Auto center this flipbook
-
-			autoCenter: true,
-
-			// Elevation from the edge of the flipbook when turning a page
-
-			elevation: 50,
-
-			// The number of pages
-
-			pages: 32,
-
-			// Events
-
-			when: {
-				turning: function(event, page, view) {
-					
-					var book = $(this),
-					currentPage = book.turn('page'),
-					pages = book.turn('pages');
-			
-					// Update the current URI
-
-					Hash.go('page/' + page).update();
-
-					// Show and hide navigation buttons
-
-					disableControls(page);
-					
-
-					$('.thumbnails .page-'+currentPage).
-						parent().
-						removeClass('current');
-
-					$('.thumbnails .page-'+page).
-						parent().
-						addClass('current');
-
-
-
-				},
-
-				turned: function(event, page, view) {
-
-					disableControls(page);
-
-					$(this).turn('center');
-
-					if (page==1) { 
-						$(this).turn('peel', 'br');
-					}
-
-				},
-
-				missing: function (event, pages) {
-
-					// Add pages that aren't in the magazine
-
-					for (var i = 0; i < pages.length; i++)
-						addPage(pages[i], $(this));
-
-				}
-			}
-
-	});
-
-	// Zoom.js
-
-	$('.magazine-viewport').zoom({
-		flipbook: $('.magazine'),
-
-		max: function() { 
-			
-			return largeMagazineWidth()/$('.magazine').width();
-
-		}, 
-
-		when: {
-
-			swipeLeft: function() {
-
-				$(this).zoom('flipbook').turn('next');
-
-			},
-
-			swipeRight: function() {
-				
-				$(this).zoom('flipbook').turn('previous');
-
-			},
-
-			resize: function(event, scale, page, pageElement) {
-
-				if (scale==1)
-					loadSmallPage(page, pageElement);
-				else
-					loadLargePage(page, pageElement);
-
-			},
-
-			zoomIn: function () {
-
-				$('.thumbnails').hide();
-				$('.made').hide();
-				$('.magazine').removeClass('animated').addClass('zoom-in');
-				$('.zoom-icon').removeClass('zoom-icon-in').addClass('zoom-icon-out');
-				
-				if (!window.escTip && !$.isTouch) {
-					escTip = true;
-
-					$('<div />', {'class': 'exit-message'}).
-						html('<div>Press ESC to exit</div>').
-							appendTo($('body')).
-							delay(2000).
-							animate({opacity:0}, 500, function() {
-								$(this).remove();
-							});
-				}
-			},
-
-			zoomOut: function () {
-
-				$('.exit-message').hide();
-				$('.thumbnails').fadeIn();
-				$('.made').fadeIn();
-				$('.zoom-icon').removeClass('zoom-icon-out').addClass('zoom-icon-in');
-
-				setTimeout(function(){
-					$('.magazine').addClass('animated').removeClass('zoom-in');
-					resizeViewport();
-				}, 0);
-
-			}
-		}
-	});
-
-	// Zoom event
-
-	if ($.isTouch)
-		$('.magazine-viewport').bind('zoom.doubleTap', zoomTo);
-	else
-		$('.magazine-viewport').bind('zoom.tap', zoomTo);
-
-
-	// Using arrow keys to turn the page
-
-	$(document).keydown(function(e){
-
-		var previous = 37, next = 39, esc = 27;
-
-		switch (e.keyCode) {
-			case previous:
-
-				// left arrow
-				$('.magazine').turn('previous');
-				e.preventDefault();
-
-			break;
-			case next:
-
-				//right arrow
-				$('.magazine').turn('next');
-				e.preventDefault();
-
-			break;
-			case esc:
-				
-				$('.magazine-viewport').zoom('zoomOut');	
-				e.preventDefault();
-
-			break;
-		}
-	});
-
-	// URIs - Format #/page/1 
-
-	Hash.on('^page\/([0-9]*)$', {
-		yep: function(path, parts) {
-			var page = parts[1];
-
-			if (page!==undefined) {
-				if ($('.magazine').turn('is'))
-					$('.magazine').turn('page', page);
-			}
-
-		},
-		nop: function(path) {
-
-			if ($('.magazine').turn('is'))
-				$('.magazine').turn('page', 1);
-		}
-	});
-
-
-	$(window).resize(function() {
-		resizeViewport();
-	}).bind('orientationchange', function() {
-		resizeViewport();
-	});
-
-	// Events for thumbnails
-
-	$('.thumbnails').click(function(event) {
-		
-		var page;
-
-		if (event.target && (page=/page-([0-9]+)/.exec($(event.target).attr('class'))) ) {
-		
-			$('.magazine').turn('page', page[1]);
-		}
-	});
-
-	$('.thumbnails li').
-		bind($.mouseEvents.over, function() {
-			
-			$(this).addClass('thumb-hover');
-
-		}).bind($.mouseEvents.out, function() {
-			
-			$(this).removeClass('thumb-hover');
-
-		});
-
-	if ($.isTouch) {
-	
-		$('.thumbnails').
-			addClass('thumbanils-touch').
-			bind($.mouseEvents.move, function(event) {
-				event.preventDefault();
-			});
-
-	} else {
-
-		$('.thumbnails ul').mouseover(function() {
-
-			$('.thumbnails').addClass('thumbnails-hover');
-
-		}).mousedown(function() {
-
-			return false;
-
-		}).mouseout(function() {
-
-			$('.thumbnails').removeClass('thumbnails-hover');
-
-		});
-
-	}
-
-
-	// Regions
-
-	if ($.isTouch) {
-		$('.magazine').bind('touchstart', regionClick);
-	} else {
-		$('.magazine').click(regionClick);
-	}
-
-	// Events for the next button
-
-	$('.next-button').bind($.mouseEvents.over, function() {
-		
-		$(this).addClass('next-button-hover');
-
-	}).bind($.mouseEvents.out, function() {
-		
-		$(this).removeClass('next-button-hover');
-
-	}).bind($.mouseEvents.down, function() {
-		
-		$(this).addClass('next-button-down');
-
-	}).bind($.mouseEvents.up, function() {
-		
-		$(this).removeClass('next-button-down');
-
-	}).click(function() {
-		
-		$('.magazine').turn('next');
-
-	});
-
-	// Events for the next button
-	
-	$('.previous-button').bind($.mouseEvents.over, function() {
-		
-		$(this).addClass('previous-button-hover');
-
-	}).bind($.mouseEvents.out, function() {
-		
-		$(this).removeClass('previous-button-hover');
-
-	}).bind($.mouseEvents.down, function() {
-		
-		$(this).addClass('previous-button-down');
-
-	}).bind($.mouseEvents.up, function() {
-		
-		$(this).removeClass('previous-button-down');
-
-	}).click(function() {
-		
-		$('.magazine').turn('previous');
-
-	});
-
-
-	resizeViewport();
-
-	$('.magazine').addClass('animated');
-
-}
-
-// Zoom icon
-
- $('.zoom-icon').bind('mouseover', function() { 
- 	
- 	if ($(this).hasClass('zoom-icon-in'))
- 		$(this).addClass('zoom-icon-in-hover');
-
- 	if ($(this).hasClass('zoom-icon-out'))
- 		$(this).addClass('zoom-icon-out-hover');
- 
- }).bind('mouseout', function() { 
- 	
- 	 if ($(this).hasClass('zoom-icon-in'))
- 		$(this).removeClass('zoom-icon-in-hover');
- 	
- 	if ($(this).hasClass('zoom-icon-out'))
- 		$(this).removeClass('zoom-icon-out-hover');
-
- }).bind('click', function() {
-
- 	if ($(this).hasClass('zoom-icon-in'))
- 		$('.magazine-viewport').zoom('zoomIn');
- 	else if ($(this).hasClass('zoom-icon-out'))	
-		$('.magazine-viewport').zoom('zoomOut');
-
- });
-
- $('#canvas').hide();
-
-
-// Load the HTML4 version if there's not CSS transform
-
-yepnope({
-	test : Modernizr.csstransforms,
-	yep: ['lib/turn.js'],
-	nope: ['lib/turn.html4.min.js'],
-	both: ['lib/zoom.min.js', 'js/magazine.js', 'css/magazine.css'],
-	complete: loadApp
-});
-
-</script>
-
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .modal {
+        display: none;
+      }
+
+      .modal-backdrop {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+
+      .modal-body {
+        position: fixed;
+        top: 3em;
+        bottom: 3em;
+        right: 20%;
+        left: 20%;
+        padding: 2em 3em;
+        background-color: #ffffff;
+        overflow: hidden;
+        z-index: 2;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 0.3em;
+        right: 0.3em;
+        padding: 0.3em;
+        cursor: pointer;
+        font-size: 2em;
+        height: 1em;
+        width: 1em;
+        text-indent: 10em;
+        overflow: hidden;
+        border: 0;
+      }
+
+      .modal-close::after {
+        position: absolute;
+        line-height: 0.5;
+        top: 0.2em;
+        left: 0.1em;
+        text-indent: 0;
+        content: '\00D7';
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center;">
+      <div class="open" style="margin-right: 10px;">
+        <p>«Воробышек» N 14</p>
+        <img src="../public/app/pages/14/magazine-14.png" />
+      </div>
+      <div class="open">
+        <p>«Воробышек» N 13</p>
+        <img src="../public/app/pages/13/magazine-13.png" />
+      </div>
+    </div>
+
+    <div class="modal" id="modal">
+      <div class="modal-backdrop"></div>
+      <div class="modal-body">
+        <iframe
+          style="width: 100%; height: 100%; border: none;"
+          src="./app/index.html"
+        ></iframe>
+        <button class="modal-close" id="close">Закрыть</button>
+      </div>
+    </div>
+
+    <script>
+      const dataImages = [
+        {
+          name: '«Воробышек» N 14',
+          images: [
+            'pages/14/1.jpg',
+            'pages/14/2.jpg',
+            'pages/14/3.jpg',
+            'pages/14/4.jpg',
+            'pages/14/5.jpg'
+          ]
+        },
+        {
+          name: '«Воробышек» N 13',
+          images: [
+            'pages/14/6.jpg',
+            'pages/14/7.jpg',
+            'pages/14/8.jpg',
+            'pages/14/9.jpg',
+            'pages/14/10.jpg'
+          ]
+        }
+      ];
+
+      var button = document.getElementsByClassName('open');
+      var close = document.getElementById('close');
+      var modal = document.getElementById('modal');
+
+      for (var i = 0; i < button.length; i++) {
+        button[i].addEventListener('click', function(event) {
+          const target = event.target;
+          dataImages.forEach(({ name, images }) => {
+            // console.log(name, target.textContent);
+            if (target.textContent === name) {
+              return images;
+            }
+          });
+
+          // console.log(target.textContent);
+          event.preventDefault();
+          modal.style.display = 'block';
+        });
+      }
+
+      // button.addEventListener('click', function(event) {
+      //   event.preventDefault();
+      //   modal.style.display = 'block';
+      // });
+
+      close.addEventListener('click', function(event) {
+        event.preventDefault();
+        modal.style.display = 'none';
+      });
+    </script>
+  </body>
 </html>
